@@ -10,7 +10,7 @@ class Config:
     FLASK_ADMIN=os.environ.get('FLASKY_ADMIN')
 
     @staticmethod
-    def initapp(app):
+    def init_app(app):
         pass
 
 class DevConfig(Config):
