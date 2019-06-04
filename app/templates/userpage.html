@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% import 'bootstrap/wtf.html' as wtf %}
+
+{% block title %}这就是用户页了{% endblock %}
+
+{% block content %}
+<h1>你好啊，{% if uname %}{{uname}}{% else %}怪人{% endif%}</h1>
+
+{% if isknow %}
+<p>咋又是你啊</p>
+{% else %}
+<p>来打我呀</p>
+{% endif %}
+
+{{wtf.quick_form(form)}}
+{% endblock %}
+
