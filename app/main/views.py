@@ -11,9 +11,9 @@ def index():
     return render_template('index.html')
 
 
-@main.route('/user')
+@main.route('/user',methods=['GET','POST'])
 def userpage():
-    form = NameForm
+    form = NameForm()
     if form.validate_on_submit():
         user = User.query.filter_by(username=form.name.data).first()
         if user is None:
@@ -25,6 +25,6 @@ def userpage():
             session['isknow'] = True
         session['uname'] = form.name.data
         form.name.data = ''
-        return redirect(url_for('userpage'))
-    render_template('userpage', form=form, uname=session.get('uname'),
+        return redirect(url_for('main.userpage'))
+    return render_template('userpage.html', form=form, uname=session.get('uname'),
                     isknow=session.get('isknow', False), cur_time=datetime.utcnow())
