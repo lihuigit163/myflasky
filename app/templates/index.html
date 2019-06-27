@@ -2,4 +2,13 @@
 
 {% block content %}
 <h1>这就是首页了</h1>
+<div>
+    <h3>你好啊，
+        {% if current_user.is_authenticated %}
+        {{ current_user.username }}
+        {% else %}
+        陌生人
+        {% endif %}
+    </h3>
+</div>
 {% endblock %}
