@@ -16,7 +16,7 @@ class LoginForm(FlaskForm):
 class RegistrationForm(FlaskForm):
     email=StringField("邮箱",validators=[Required(),Length(5,64),Email()])
     username=StringField("用户名",validators=[Required(),Length(5,64),
-    Regexp('^[A-Za-z][A-Za-z0-9_]$',re.I,'用户名为字母,数字,下划线组成且必须以字母打头')])
+    Regexp('^[A-Za-z][A-Za-z0-9_]*$',re.I,'用户名为字母,数字,下划线组成且必须以字母打头')])
     pwd=PasswordField("密码",validators=[Required(),EqualTo('pwd2',message='2次密码必须一致')])
     pwd2=PasswordField("确认密码",validators=[Required()])
     
@@ -27,5 +27,5 @@ class RegistrationForm(FlaskForm):
             raise ValidationError('邮箱已经被注册')
         
     def validate_username(self,field):
-        if User.query.filter_by(email=field.data).first():
+        if User.query.filter_by(username=field.data).first():
             raise ValidationError('用户名已存在')

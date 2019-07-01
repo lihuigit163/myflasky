@@ -5,6 +5,7 @@ from flask_login import login_user,logout_user,login_required
 from . import auth
 from ..models import User
 from .forms import LoginForm,RegistrationForm
+from .. import db
 
 
 @auth.route('/secret')
@@ -31,7 +32,7 @@ def logout():
     flash('logged out')
     return redirect(url_for("main.index"))
 
-@auth.route('/registor')
+@auth.route('/registor',methods=['GET','POST'])
 def registor():
     form=RegistrationForm()
     if form.validate_on_submit():
@@ -40,4 +41,4 @@ def registor():
         db.session.commit()
         flash('注册成功')
         return redirect(url_for('auth/login'))
-    return render_template('auth.registor.html',form=form)
+    return render_template('auth/registor.html',form=form)
