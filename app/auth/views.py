@@ -40,5 +40,5 @@ def registor():
         db.session.add(user)
         db.session.commit()
         flash('注册成功')
-        return redirect(url_for('auth/login'))
+        return redirect(url_for('auth.login'))
     return render_template('auth/registor.html',form=form)

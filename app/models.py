@@ -18,6 +18,8 @@ class User(UserMixin,db.Model):
     username=db.Column(db.String(64),unique=True,index=True)
     password_hash=db.Column(db.String(128))
     email=db.Column(db.String(64),unique=True,index=True)
+    comfirmed = db.Column(db.Boolean,default=False)
+    comfirmtime=db.Column(db.DateTime)
     role_id=db.Column(db.Integer,db.ForeignKey('roles.id'))
 
     def __reqr__(self):
